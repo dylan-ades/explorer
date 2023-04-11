@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Blog</title>
+</head>
+<body>
+    <header>
+    <h1>Entries</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/entries/new">Create a new Entry</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>list of Entries</h2>
+            <ul>
+               <% for( let i = 0; i < entries.length; i++ ) { %>
+                <li>
+                    <a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a>
+                </li>
+                <% } %>
+            </ul>
+        
+    </main>
+</body>
+</html>

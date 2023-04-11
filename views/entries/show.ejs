@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Express Blog</title>
+</head>
+
+<body>
+    <header>
+        <h1>Show Page for <%= entry.name %></h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/entries">Entry Index</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Entry Attributes:</h2>
+            <ul>
+                <li>Name: <%= entry.country %></li>
+                <li>Name: <%= entry.city %></li>
+                <li><img src='<%=entry.image %>'></li>
+                <li>Visited?: <%= entry.visited %></li>
+            </ul>
+        </section>
+        <section>
+            <form action="/entries/<%= entry._id %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete Entry" />
+            </form>
+        </section>
+        <section>
+            <a href="/entries/<%= entry._id %>/edit">Edit entry info</a>
+        </section>
+    </main>
+</body>
+
+</html>

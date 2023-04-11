@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Express Blog</title>
+</head>
+
+<body>
+    <header>
+        <h1>Edit <%= entry.name %>'s Info</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/entries">Entries Index</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Entry Attributes:</h2>
+        <form action="/entries/<%= entry._id %>?_method=PUT" method="POST">
+            <input type="text" name="country" value="<%= entry.country %>" /><br />
+            <input type="text" name="city" value="<%= entry.city %>" /><br />
+            <input type="text" name="image" value="<%= entry.image %>" />
+            <input type="checkbox" name="imageYours" value="<%= entry.imageYours %>" /><br />
+            <input type="checkbox" name="visited" value="<%= entry.visited %>" /><br />
+            <input type="submit" value="Update Entry" />
+        </form>
+    </main>
+</body>
+
+</html>
