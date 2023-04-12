@@ -24,10 +24,15 @@
         <section>
             <h2>Entry Attributes:</h2>
             <ul>
-                <li>Name: <%= entry.country %></li>
-                <li>Name: <%= entry.city %></li>
-                <li><img src='<%=entry.image %>'></li>
+                <li>Country: <%= entry.country %></li>
+                <li>City: <%= entry.city %></li>
                 <li>Visited?: <%= entry.visited %></li>
+            </ul>
+            <h2>Images:</h2>
+            <ul>
+            <% for (let i = 0; i < entry.images.length; i++) { %>
+             <li><img src="../../uploads/<%=entry.images[i] %>" width="200vh" /></li>
+            <% } %>
             </ul>
         </section>
         <section>

@@ -1,28 +1,11 @@
 const express = require("express")
-const axios = require('axios')
+const multer = require('multer');
 const router = express.Router()
 const Entry = require('../models/entries')
-let responseData;
+let images;
 
-//API CALL
-// axios.get(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${namePrefix}`, {
-//     headers: {
-//         'x-rapidapi-key': 'ad4dc71239mshc5a1fd6d4883f1dp11d351jsnb9203a044396',
-//         'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
-//         'useQueryString': true
-//     },
-//     params: {
-//         limit: 2,
-//         offset: 0,
-//         sort: '-population'
-//     }
-//     })
-//     .then(response => {
-//       console.log(response.data);
-//     })
-//     .catch(error => {
-//       console.log(error);
-//     });
+//Middleware
+const upload = multer({ dest: 'uploads/' });
 
 // I 
 router.get('/', async (req, res) => {
@@ -45,42 +28,98 @@ router.delete('/:id', async (req, res) => {
 })
 
 // U 
-router.put('/:id', async (req,res) => {
-    if (req.body.imageYours === "on") {
-        req.body.imageYours = true
-      } else {
-        req.body.imageYours = false
-      }
+// router.put('/:id', async (req,res) => {
+//     if (req.body.imageYours === "on") {
+//         req.body.imageYours = true
+//       } else {
+//         req.body.imageYours = false
+//       }
 
+//     if (req.body.visited === "on") {
+//         req.body.visited = true
+//       } else {
+//         req.body.visited = false
+//       }
+//     await Entry.findByIdAndUpdate(req.params.id, req.body)
+//     res.redirect('/entries')
+// })
+
+router.put('/:id', upload.array('images'), async (req, res) => {
+    if (req.body.imageYours === "on") {
+      req.body.imageYours = true
+    } else {
+      req.body.imageYours = false
+    }
+  
     if (req.body.visited === "on") {
-        req.body.visited = true
-      } else {
-        req.body.visited = false
-      }
-    await Entry.findByIdAndUpdate(req.params.id, req.body)
-    res.redirect('/entries')
-})
+      req.body.visited = true
+    } else {
+      req.body.visited = false
+    }
+  
+    images = req.files.map(file => file.filename);
+  
+    const updatedEntry = {
+      country: req.body.country,
+      city: req.body.city,
+      images,
+      imageYours: req.body.imageYours,
+      visited: req.body.visited,
+    };
+  
+    await Entry.findByIdAndUpdate(req.params.id, updatedEntry);
+    res.redirect('/entries');
+  });
 
 // C 
-router.post('/', (req,res)=> {
-    if (req.body.imageYours === 'on') {
-		//if checked, req.body.completed is set to 'on'
-		req.body.imageYours = true;
-	} else {
-		//if not checked, req.body.completed is undefined
-		req.body.imageYours = false;
-	}
+// router.post('/', (req,res)=> {
+//     if (req.body.imageYours === 'on') {
+// 		//if checked, req.body.completed is set to 'on'
+// 		req.body.imageYours = true;
+// 	} else {
+// 		//if not checked, req.body.completed is undefined
+// 		req.body.imageYours = false;
+// 	}
 
-    if (req.body.visited === 'on') {
-		//if checked, req.body.completed is set to 'on'
-		req.body.visited = true;
-	} else {
-		//if not checked, req.body.completed is undefined
-		req.body.visited = false;
-	}
-    const createdPost = new Entry(req.body)
-    createdPost.save().then(res.redirect('/entries'))
-})
+//     if (req.body.visited === 'on') {
+// 		//if checked, req.body.completed is set to 'on'
+// 		req.body.visited = true;
+// 	} else {
+// 		//if not checked, req.body.completed is undefined
+// 		req.body.visited = false;
+// 	}
+//     const createdPost = new Entry(req.body)
+//     createdPost.save().then(res.redirect('/entries'))
+// })
+
+router.post('/', upload.array('images'), (req, res) => {
+  if (req.body.imageYours === 'on') {
+    req.body.imageYours = true;
+  } else {
+    req.body.imageYours = false;
+  }
+
+  if (req.body.visited === 'on') {
+    req.body.visited = true;
+  } else {
+    req.body.visited = false;
+  }
+
+  images = req.files.map(file => file.filename);
+
+  const newEntry = new Entry({
+    country: req.body.country,
+    city: req.body.city,
+    images,
+    imageYours: req.body.imageYours,
+    visited: req.body.visited,
+  });
+
+  newEntry.save().then(() => {
+    res.redirect('/entries');
+  });
+});
+
 // E
 router.get('/:id/edit', async (req, res) => {
     const foundEntry = await Entry.findById(req.params.id)

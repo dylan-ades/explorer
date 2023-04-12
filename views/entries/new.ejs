@@ -24,11 +24,13 @@
     </header>
     <main>
         <%let countryVal, cityVal, regionVal = "";%>
-        <form action="/entries" method="POST">
+        <form action="/entries" method="POST" enctype="multipart/form-data">
             City: <input id="city" type="text" name="city" /><br />
             State/Region: <input id="region" type="text" name="state" /><br />
             Country: <input id="country" type="text" name="country" /><br />
-            Image: <input type="text" name="image"  />
+            <!-- Image: <input type="text" name="image"  /> -->
+            <label for="images">Select images:</label>
+            <input type="file" id="images" name="images" multiple>
             Add to myPhotos?<input type="checkbox" name="imageYours"  /><br />
             Visited?<input type="checkbox" name="visited"  /><br />
             <input type="submit" value="Create Entry" />

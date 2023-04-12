@@ -22,10 +22,11 @@
     </header>
     <main>
         <h2>Entry Attributes:</h2>
-        <form action="/entries/<%= entry._id %>?_method=PUT" method="POST">
+        <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <input type="text" name="country" value="<%= entry.country %>" /><br />
             <input type="text" name="city" value="<%= entry.city %>" /><br />
-            <input type="text" name="image" value="<%= entry.image %>" />
+            <label for="images">Select images:</label>
+            <input type="file" id="images" name="images" multiple>
             <input type="checkbox" name="imageYours" value="<%= entry.imageYours %>" /><br />
             <input type="checkbox" name="visited" value="<%= entry.visited %>" /><br />
             <input type="submit" value="Update Entry" />
