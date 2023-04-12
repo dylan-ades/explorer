@@ -1,6 +1,28 @@
 const express = require("express")
+const axios = require('axios')
 const router = express.Router()
 const Entry = require('../models/entries')
+let responseData;
+
+//API CALL
+// axios.get(`https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${namePrefix}`, {
+//     headers: {
+//         'x-rapidapi-key': 'ad4dc71239mshc5a1fd6d4883f1dp11d351jsnb9203a044396',
+//         'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com',
+//         'useQueryString': true
+//     },
+//     params: {
+//         limit: 2,
+//         offset: 0,
+//         sort: '-population'
+//     }
+//     })
+//     .then(response => {
+//       console.log(response.data);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
 
 // I 
 router.get('/', async (req, res) => {
@@ -14,6 +36,7 @@ router.get('/', async (req, res) => {
 router.get('/new', (req, res)=> {
     res.render('entries/new.ejs')
 })
+
 
 // D 
 router.delete('/:id', async (req, res) => {
