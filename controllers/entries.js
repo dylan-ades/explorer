@@ -53,7 +53,7 @@ router.put('/:id', upload.array('images'), async (req, res) => {
       visited: req.body.visited,
     };
   
-    await Entry.findByIdAndUpdate(req.params.id, updatedEntry);
+    await Entry.findByIdAndUpdate(req.params.id, updatedEntry, {new: true});
     res.redirect('/entries');
   });
 // router.put('/:id', async (req,res) => {
