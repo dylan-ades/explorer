@@ -25,6 +25,7 @@
         <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
             <input type="text" name="country" value="<%= entry.country %>" /><br />
             <input type="text" name="city" value="<%= entry.city %>" /><br />
+            <input type="text" name="region" value="<%= entry.region %>" /><br />
             <label for="images">Select images:</label>
             <input type="file" id="images" name="images" multiple>
             <input type="checkbox" name="imageYours" value="<%= entry.imageYours %>" /><br />

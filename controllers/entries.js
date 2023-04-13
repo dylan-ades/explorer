@@ -28,21 +28,6 @@ router.delete('/:id', async (req, res) => {
 })
 
 // U 
-// router.put('/:id', async (req,res) => {
-//     if (req.body.imageYours === "on") {
-//         req.body.imageYours = true
-//       } else {
-//         req.body.imageYours = false
-//       }
-
-//     if (req.body.visited === "on") {
-//         req.body.visited = true
-//       } else {
-//         req.body.visited = false
-//       }
-//     await Entry.findByIdAndUpdate(req.params.id, req.body)
-//     res.redirect('/entries')
-// })
 
 router.put('/:id', upload.array('images'), async (req, res) => {
     if (req.body.imageYours === "on") {
@@ -62,6 +47,7 @@ router.put('/:id', upload.array('images'), async (req, res) => {
     const updatedEntry = {
       country: req.body.country,
       city: req.body.city,
+      region: req.body.region,
       images,
       imageYours: req.body.imageYours,
       visited: req.body.visited,
@@ -70,8 +56,52 @@ router.put('/:id', upload.array('images'), async (req, res) => {
     await Entry.findByIdAndUpdate(req.params.id, updatedEntry);
     res.redirect('/entries');
   });
+// router.put('/:id', async (req,res) => {
+//     if (req.body.imageYours === "on") {
+//         req.body.imageYours = true
+//       } else {
+//         req.body.imageYours = false
+//       }
+
+//     if (req.body.visited === "on") {
+//         req.body.visited = true
+//       } else {
+//         req.body.visited = false
+//       }
+//     await Entry.findByIdAndUpdate(req.params.id, req.body)
+//     res.redirect('/entries')
+// })
 
 // C 
+router.post('/', upload.array('images'), (req, res) => {
+  if (req.body.imageYours === 'on') {
+    req.body.imageYours = true;
+  } else {
+    req.body.imageYours = false;
+  }
+
+  if (req.body.visited === 'on') {
+    req.body.visited = true;
+  } else {
+    req.body.visited = false;
+  }
+
+  images = req.files.map(file => file.filename);
+
+  const newEntry = new Entry({
+    country: req.body.country,
+    city: req.body.city,
+    region: req.body.region,
+    images,
+    imageYours: req.body.imageYours,
+    visited: req.body.visited,
+  });
+
+  newEntry.save().then(() => {
+    res.redirect('/entries');
+  });
+});
+
 // router.post('/', (req,res)=> {
 //     if (req.body.imageYours === 'on') {
 // 		//if checked, req.body.completed is set to 'on'
@@ -91,34 +121,6 @@ router.put('/:id', upload.array('images'), async (req, res) => {
 //     const createdPost = new Entry(req.body)
 //     createdPost.save().then(res.redirect('/entries'))
 // })
-
-router.post('/', upload.array('images'), (req, res) => {
-  if (req.body.imageYours === 'on') {
-    req.body.imageYours = true;
-  } else {
-    req.body.imageYours = false;
-  }
-
-  if (req.body.visited === 'on') {
-    req.body.visited = true;
-  } else {
-    req.body.visited = false;
-  }
-
-  images = req.files.map(file => file.filename);
-
-  const newEntry = new Entry({
-    country: req.body.country,
-    city: req.body.city,
-    images,
-    imageYours: req.body.imageYours,
-    visited: req.body.visited,
-  });
-
-  newEntry.save().then(() => {
-    res.redirect('/entries');
-  });
-});
 
 // E
 router.get('/:id/edit', async (req, res) => {

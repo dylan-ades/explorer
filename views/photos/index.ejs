@@ -22,23 +22,31 @@
         </nav>
     </header>
     <main>
-        <h2>list of Photos</h2>
+        <h2>List of Photos</h2>
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
                 <li>
-                    <a href="/photos/<%= entries[i]._id%>"><%= entries[i].country %></a>
-                    <ul>
-                    <% for (let j = 0; j < entries[i].images.length; j++) { %>
-                    <li class="pictures"><img src="../../uploads/<%=entries[i].images[j] %>" width="300vh" /> </li>
-                    <% } %>
-                    </ul>
+                    <%= entries[i].country %>
+                        <ul>
+                            <li><%= entries[i].city %>
+                                <ul>
+                                    <% if(entries[i].imageYours)  {%>
+                                    <% for (let j = 0; j < entries[i].images.length; j++) { %>
+                                    <li class="pictures"><img src="../../uploads/<%=entries[i].images[j] %>" width="300vh" /> </li>
+                                    <% } %>
+                                    <% } %>
+                                </ul>
+                            </li>
+                        </ul>
                 </li>
                 <% } %>
             </ul>
+        <h2>List of Places</h2>
+        
     </main>
     <img id="full-image">
     <script>
-        const listItems = document.querySelectorAll('li');
+        const listItems = document.querySelectorAll('.pictures');
         const fullImage = document.getElementById('full-image');
 
         listItems.forEach((item) => {
@@ -47,15 +55,18 @@
                 // if (clickedImage) {
                     const clickedImageSrc = event.target.getAttribute('src');
                     fullImage.setAttribute('src', clickedImageSrc);
-                    fullImage.setAttribute('width', '500vh')
+                    fullImage.setAttribute('width', '400vh')
                     clearEverythingElse();
                 // }
             });
         });
         function clearEverythingElse() {
             const all = document.querySelector("main");
-            all.remove();
-            document.querySelector('body').style.backgroundColor == 'black'
+            console.log(all)
+            // if (all) {
+                all.remove();
+            // }
+            document.querySelector('body').style.backgroundColor = 'black'
             let newLi = document.createElement("li")
             newLi.innerHTML = `<a href="/photos">Photo Index</a>`
             document.querySelector('ul').appendChild(newLi)

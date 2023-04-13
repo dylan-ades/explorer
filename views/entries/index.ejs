@@ -21,15 +21,22 @@
         </nav>
     </header>
     <main>
-        <h2>list of Entries</h2>
+        <h2>List of Entries</h2>
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
-                <li>
-                    <a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a>
-                </li>
+                    <li><a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a></li>
+                    <ul>
+                    <li><%=entries[i].region%></li>
+                    <ul>
+                    <li><%=entries[i].city%></li>
+                    </ul>
+                    </ul>
                 <% } %>
             </ul>
-        
+        <h2> Traveler's Checklist</h2>
     </main>
+    <script>
+        // insert ul construction here
+    </script>
 </body>
 </html>
