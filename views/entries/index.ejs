@@ -9,6 +9,9 @@
 <body>
     <header>
     <h1>Entries</h1>
+    <h4 id="all">All</h4>
+    <h4 id="visited">Visited</h4>
+    <h4 id="unvisited">Unvisited</h4>
         <nav>
             <ul>
                 <li>
@@ -24,19 +27,53 @@
         <h2>List of Entries</h2>
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
-                    <li><a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a></li>
+                    <li <%if (!entries[i].visited) {%> class='unvisited' <% } else { %> class='visited' <% } %>><a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a>
                     <ul>
                     <li><%=entries[i].region%></li>
                     <ul>
                     <li><%=entries[i].city%></li>
                     </ul>
                     </ul>
+                </li>
                 <% } %>
             </ul>
-        <h2> Traveler's Checklist</h2>
+        <!-- <h2> Traveler's Checklist</h2> -->
     </main>
     <script>
-        // insert ul construction here
+        let visitedElements = document.querySelectorAll('.visited')
+        let unvisitedElements = document.querySelectorAll('.unvisited')
+        console.log(visitedElements)
+        console.log(unvisitedElements)
+
+        document.getElementById('all').addEventListener("click", myFunction1);
+        document.getElementById('visited').addEventListener("click", myFunction2);
+        document.getElementById('unvisited').addEventListener("click", myFunction3);
+
+        
+function myFunction1() {
+    visitedElements.forEach((element) => {
+        element.style.display = 'block';
+    });
+    unvisitedElements.forEach((element) => {
+        element.style.display = 'block';
+    });
+}
+function myFunction2() {
+    visitedElements.forEach((element) => {
+        element.style.display = 'block';
+    });
+    unvisitedElements.forEach((element) => {
+        element.style.display = 'none';
+    });
+}
+function myFunction3() {
+    visitedElements.forEach((element) => {
+        element.style.display = 'none';
+    });
+    unvisitedElements.forEach((element) => {
+        element.style.display = 'block';
+    });
+}
     </script>
 </body>
 </html>

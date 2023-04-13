@@ -25,29 +25,21 @@
         <h2>List of Photos</h2>
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
-                <li>
-                    <%= entries[i].country %>
-                        <ul>
-                            <li><%= entries[i].city %>
-                                <ul>
-                                    <% if(entries[i].imageYours)  {%>
-                                    <% for (let j = 0; j < entries[i].images.length; j++) { %>
-                                    <li class="pictures"><img src="../../uploads/<%=entries[i].images[j] %>" width="300vh" /> </li>
-                                    <% } %>
-                                    <% } %>
-                                </ul>
-                            </li>
-                        </ul>
-                </li>
+                    <% if(entries[i].imageYours)  {%>
+                        <% for (let j = 0; j < entries[i].images.length; j++) { %>
+                        <li class="pictures"><img src="../../uploads/<%=entries[i].images[j] %>" width="300vh" /><span hidden>Taken in <%=entries[i].city %>, <%=entries[i].region %>, <%=entries[i].country %></span></li>
+                        <% } %>
+                    <% } %>
                 <% } %>
             </ul>
-        <h2>List of Places</h2>
         
     </main>
     <img id="full-image">
+    <p id="caption"></p>
     <script>
         const listItems = document.querySelectorAll('.pictures');
         const fullImage = document.getElementById('full-image');
+        // document.querySelector('span').hide();
 
         listItems.forEach((item) => {
             item.addEventListener('click', (event) => {
@@ -55,7 +47,9 @@
                 // if (clickedImage) {
                     const clickedImageSrc = event.target.getAttribute('src');
                     fullImage.setAttribute('src', clickedImageSrc);
-                    fullImage.setAttribute('width', '400vh')
+                    fullImage.setAttribute('width', '500vh')
+                    document.querySelector('span').removeAttribute("hidden")
+                    document.getElementById('caption').innerText = item.innerText
                     clearEverythingElse();
                 // }
             });
@@ -67,6 +61,7 @@
                 all.remove();
             // }
             document.querySelector('body').style.backgroundColor = 'black'
+            document.querySelector('p').style.color = 'white'
             let newLi = document.createElement("li")
             newLi.innerHTML = `<a href="/photos">Photo Index</a>`
             document.querySelector('ul').appendChild(newLi)
