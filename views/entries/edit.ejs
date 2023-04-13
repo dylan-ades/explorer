@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Express Blog</title>
+    <title>Edit Entry</title>
 </head>
 
 <body>
     <header>
-        <h1>Edit <%= entry.name %>'s Info</h1>
+        <h1>Edit <%= entry.city %>'s Info</h1>
         <nav>
             <ul>
                 <li>
@@ -28,7 +28,9 @@
             <input type="text" name="region" value="<%= entry.region %>" /><br />
             <label for="images">Select images:</label>
             <input type="file" id="images" name="images" multiple>
+            <label for="imageYours">Is this Image Yours?:</label>
             <input type="checkbox" name="imageYours" value="<%= entry.imageYours %>" /><br />
+            <label for="visited">Have you visited?:</label>
             <input type="checkbox" name="visited" value="<%= entry.visited %>" /><br />
             <input type="submit" value="Update Entry" />
         </form>

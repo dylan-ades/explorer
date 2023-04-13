@@ -67,7 +67,7 @@
             text-decoration: none;
         }
         a:hover {
-            text-decoration: underline;
+            cursor: pointer;
         }
         h4:hover {
             text-decoration: underline;
@@ -94,9 +94,11 @@
     </header>
     <main>
         <h2>List of Entries</h2>
+        
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
-                    <li <%if (!entries[i].visited) {%> class='unvisited' <% } else { %> class='visited' <% } %>><a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a>
+                <a href="/entries/<%= entries[i]._id%>">
+                    <li <%if (!entries[i].visited) {%> class='unvisited' <% } else { %> class='visited' <% } %>><%= entries[i].country %>
                         <% if (entries[i].region) { %>
                     <ul>
                     <li><%=entries[i].region%></li>
@@ -108,6 +110,7 @@
                     </ul>
                 </li>
                 <% } %>
+                </a>
                 <% } %>
             </ul>
         <!-- <h2> Traveler's Checklist</h2> -->
