@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Express Blog</title>
+</head>
+
+<body>
+    <header>
+    <h1>Photos</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <!-- <li>
+                    <a href="/entries/new">Create a new Entry</a>
+                </li> -->
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>list of Photos</h2>
+            <ul>
+               <% for( let i = 0; i < entries.length; i++ ) { %>
+                <li>
+                    <a href="/photos/<%= entries[i]._id%>"><%= entries[i].country %></a>
+                    <ul>
+                    <% for (let j = 0; j < entries[i].images.length; j++) { %>
+                    <li class="pictures"><img src="../../uploads/<%=entries[i].images[j] %>" width="300vh" /> </li>
+                    <% } %>
+                    </ul>
+                </li>
+                <% } %>
+            </ul>
+    </main>
+    <img id="full-image">
+    <script>
+        const listItems = document.querySelectorAll('li');
+        const fullImage = document.getElementById('full-image');
+
+        listItems.forEach((item) => {
+            item.addEventListener('click', (event) => {
+                const clickedImage = event.target.querySelector('img');
+                // if (clickedImage) {
+                    const clickedImageSrc = event.target.getAttribute('src');
+                    fullImage.setAttribute('src', clickedImageSrc);
+                    fullImage.setAttribute('width', '500vh')
+                    clearEverythingElse();
+                // }
+            });
+        });
+        function clearEverythingElse() {
+            const all = document.querySelector("main");
+            all.remove();
+            document.querySelector('body').style.backgroundColor == 'black'
+            let newLi = document.createElement("li")
+            newLi.innerHTML = `<a href="/photos">Photo Index</a>`
+            document.querySelector('ul').appendChild(newLi)
+        }
+    </script>
+</body>
+</html>

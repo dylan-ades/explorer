@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Express Blog</title>
+</head>
+
+<body>
+    <header>
+        <h1>Show Page for <%= entry.name %></h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/photos">Photo Index</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Images:</h2>
+            <ul>
+            <% for (let i = 0; i < entry.images.length; i++) { %>
+             <li><img src="../../uploads/<%=entry.images[i] %>" width="300vh" /></li>
+            <% } %>
+            </ul>
+        </section>
+        <section>
+        </section>
+        <section>
+            <!-- <a href="/entries/<%= entry._id %>/edit">Edit entry info</a> -->
+        </section>
+    </main>
+</body>
+
+</html>

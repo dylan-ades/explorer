@@ -18,7 +18,9 @@ app.use(methodOverride('_method'));
 
 // controllers
 const entriesController  =require('./controllers/entries')
+const photosController  =require('./controllers/photos')
 app.use('/entries', entriesController)
+app.use('/photos', photosController)
 
 // const articlesController = require('./controllers/articles.js');
 // app.use('/articles', articlesController)
