@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const methodOverride = require("method-override")
 require('dotenv').config()
 const app = express()
-const PORT  = 3000
+const PORT  = (process.env.PORT)
 
 mongoose.connect(process.env.DATABASE_URL)
 
