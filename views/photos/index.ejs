@@ -4,7 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Express Blog</title>
+    <title>My Photos</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffbf00;
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        }
+    
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+    
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        nav li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+    
+        nav a {
+            color: #ffbf00;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        nav a:hover {
+            color: #fff;
+        }
+    
+        main {
+            margin: 50px auto;
+            width: 90%;
+        }
+    
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    
+        .pictures {
+            display: inline-block;
+            margin: 10px;
+            position: relative;
+        }
+    
+        .pictures img {
+            cursor: pointer;
+            display: block;
+            height: auto;
+            max-width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        .pictures img:hover {
+            opacity: 0.8;
+        }
+    
+        #full-image {
+            display: block;
+            margin: 20px auto;
+            height: 70vh;
+        }
+    
+        #caption {
+            font-size: 2vh;
+            text-align: center;
+            margin: 20px auto;
+        }
+    
+        li:last-child a {
+            border: 2px solid #ffbf00;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            display: block;
+            width: 200px;
+            margin: 0 auto;
+            color: #ffbf00;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        li:last-child a:hover {
+            background-color: #ffbf00;
+            color: #1a1a1a;
+            cursor: pointer;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -22,7 +125,7 @@
         </nav>
     </header>
     <main>
-        <h2>List of Photos</h2>
+        <!-- <h2>List of Photos</h2> -->
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
                     <% if(entries[i].imageYours)  {%>
@@ -47,10 +150,12 @@
                 // if (clickedImage) {
                     const clickedImageSrc = event.target.getAttribute('src');
                     fullImage.setAttribute('src', clickedImageSrc);
-                    fullImage.setAttribute('width', '500vh')
+                    fullImage.removeAttribute('width')
                     document.querySelector('span').removeAttribute("hidden")
                     document.getElementById('caption').innerText = item.innerText
+                    console.log('occurred');
                     clearEverythingElse();
+                    
                 // }
             });
         });
@@ -59,13 +164,15 @@
             console.log(all)
             // if (all) {
                 all.remove();
+                document.querySelector('h1').remove();
             // }
             document.querySelector('body').style.backgroundColor = 'black'
             document.querySelector('p').style.color = 'white'
             let newLi = document.createElement("li")
-            newLi.innerHTML = `<a href="/photos">Photo Index</a>`
+            newLi.innerHTML = `<a href="/photos">Back</a>`
             document.querySelector('ul').appendChild(newLi)
         }
+        console.log(document.querySelector('p'))
     </script>
 </body>
 </html>
