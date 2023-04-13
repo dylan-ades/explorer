@@ -7,7 +7,7 @@
     <title>Entries Index</title>
     <style>
         body {
-            background-image: url('https://i.imgur.com/GRhYcFI.jpg');
+            background-image: url('https://www.kiwi.com/stories/wp-content/uploads/2018/06/shutterstock_562734511.jpg');
             background-size: cover;
             font-family: Arial, sans-serif;
         }
@@ -25,14 +25,17 @@
             list-style: none;
         }
         nav ul li a {
-            color: white;
+            color: #004d40;
             text-decoration: none;
             padding: 10px;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            transition: color 0.3s ease;
         }
         nav ul li a:hover {
-            background-color: #00796b;
+            background-color: #004d40;
+            color: white;
+            text-decoration: none;
         }
         h1 {
             font-size: 50px;
@@ -94,13 +97,17 @@
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
                     <li <%if (!entries[i].visited) {%> class='unvisited' <% } else { %> class='visited' <% } %>><a href="/entries/<%= entries[i]._id%>"><%= entries[i].country %></a>
+                        <% if (entries[i].region) { %>
                     <ul>
                     <li><%=entries[i].region%></li>
+                    <% } %>
                     <ul>
                     <li><%=entries[i].city%></li>
                     </ul>
+                    <% if (entries[i].region) { %>
                     </ul>
                 </li>
+                <% } %>
                 <% } %>
             </ul>
         <!-- <h2> Traveler's Checklist</h2> -->
