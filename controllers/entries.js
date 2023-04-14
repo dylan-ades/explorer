@@ -6,6 +6,7 @@ let images;
 
 //Middleware
 const upload = multer({ dest: 'uploads/' });
+router.use(express.static('public'));
 
 // I 
 router.get('/', async (req, res) => {

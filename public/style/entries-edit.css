@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Edit Entry</title>
-    <link rel="stylesheet" type="text/css" href="style/entries-edit.css">
-   <style>
-    /* Color palette */
+/* Color palette */
 :root {
     --primary-color: #E63946;
     --secondary-color: #333;
@@ -64,7 +56,6 @@ nav li {
     background-color: var(--text-color);
     padding:5px;
     border-radius: 7px;
-    transition: all 0.3s ease-in-out;
 }
 
 nav li:hover {
@@ -161,40 +152,3 @@ footer a {
 footer a:hover {
     color: var(--primary-color);
 }
-   </style> 
-</head>
-
-<body>
-    <header>
-        <h1>Edit This Destination</h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/entries">Back</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Entry Attributes:</h2>
-        <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-            <input type="text" name="country" value="<%= entry.country %>" /><br />
-            <input type="text" name="city" value="<%= entry.city %>" /><br />
-            <input type="text" name="region" value="<%= entry.region %>" /><br />
-            <label for="images">Select images:</label>
-            <input type="file" id="images" name="images" multiple>
-            <label for="imageYours">Add to Photos?</label>
-            <input type="checkbox" name="imageYours" value="on" <%= entry.imageYours ? 'checked' : '' %> >
-            <br />
-            <label for="visited">Have you visited?:</label>
-            <input type="checkbox" name="visited" value="on" <%= entry.visited ? 'checked' : '' %> >
-            <br />
-            <input type="submit" value="Update Entry" />
-        </form>
-    </main>
-</body>
-
-</html>

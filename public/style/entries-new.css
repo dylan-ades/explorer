@@ -1,0 +1,155 @@
+     /* Color palette */
+     :root {
+        --primary-color: #E63946;
+        --secondary-color: #333;
+        --text-color: #ffbf00;
+        --background-color: #1a1a1a;
+        --visited-color: #ffbf00;
+        --unvisited-color:rgb(156, 153, 153);
+    }
+
+    /* General styles */
+    body {
+        background-image: url('https://cdn.wallpapersafari.com/41/22/Q1kyih.jpg');
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Header styles */
+    header {
+        background-color: var(--secondary-color);
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 2em;
+    }
+
+    h4 {
+        margin: 0;
+        font-size: 1em;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    h4:hover {
+        color: var(--primary-color);
+    }
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    nav li {
+        margin-right: 20px;
+        background-color: var(--text-color);
+        padding:5px;
+            border-radius: 7px;
+            transition: all 0.3s ease-in-out;
+    }
+
+    nav li:hover {
+        background-color: var(--primary-color);
+        padding:5px;
+            border-radius: 7px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Main styles */
+    main {
+        margin: 20px;
+        max-width: 100vh;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        margin-top: 0;
+    }
+
+    form {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    input {
+        margin-bottom: 10px;
+        padding: 10px;
+       
+        border-radius: 5px;
+    }
+
+    li.check {
+        display: inline;
+        margin-right: 0px;
+    }
+
+    li.visited {
+        background-color: var(--visited-color);
+    }
+
+    li.unvisited {
+        background-color: var(--unvisited-color);
+    }
+
+    li.visited:hover {
+        background-color: orangered;
+    }
+
+    li.unvisited:hover {
+        background-color: orangered;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    li.cityli {
+        display: inline;
+    }
+
+    form {
+        background-color: #333;
+        border-radius: 20px;
+        padding: 5vh;
+    }
+
+    input {
+        background-color:#ffbf00;
+        color: white;
+    }
+    .images {
+        display: inline-block;
+    }
+
+    /* Footer styles */
+    footer {
+        background-color: var(--secondary-color);
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+
+    footer a {
+        color: white;
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        color: var(--primary-color);
+    }

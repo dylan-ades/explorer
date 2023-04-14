@@ -5,114 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entries Index</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        h1 {
-            font-size: 36px;
-            margin: 0;
-        }
-        
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        
-        nav li {
-            margin-left: 20px;
-        }
-        
-        nav a {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        main {
-            margin: 20px;
-        }
-        
-        h2 {
-            font-size: 24px;
-            margin: 0;
-        }
-        
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-        
-        li {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        
-        .visited {
-            background-color: #4CAF50;
-            color: #fff;
-        }
-        
-        .unvisited {
-            background-color: #f44336;
-            color: #fff;
-        }
-        
-        #all {
-            cursor: pointer;
-        }
-        
-        #visited {
-            cursor: pointer;
-        }
-        
-        #unvisited {
-            cursor: pointer;
-        }
-        main {
-        margin: 0 auto;
-        max-width: 800px; /* adjust as necessary */
-    }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-    }
-
-    li {
-        border: 1px solid #ccc;
-        margin-bottom: 10px;
-        padding: 10px;
-        max-width: 600px; /* adjust as necessary */
-    }
-
-    .visited {
-        color: green;
-    }
-
-    .unvisited {
-        color: red;
-    }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style/entries-index.css">
 </head>
 <body>
     <header>
-    <h1>Entries</h1>
+    <h1>Your Checklist</h1>
     <h4 id="all">All</h4>
     <h4 id="visited">Visited</h4>
     <h4 id="unvisited">Unvisited</h4>
@@ -122,13 +19,13 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/entries/new">Create a new Entry</a>
+                    <a href="/entries/new">Add a New Destination</a>
                 </li>
             </ul>
         </nav>
     </header>
     <main>
-        <h2>List of Entries</h2>
+        <h2>List of Destinations</h2>
         
             <ul>
                <% for( let i = 0; i < entries.length; i++ ) { %>
@@ -139,7 +36,11 @@
                     <li><%=entries[i].region%></li>
                     <% } %>
                     <ul>
-                    <li><%=entries[i].city%></li>
+                        <%if(entries[i].visited) { %>
+                            <li class="check"><%='\u2705'%></li>
+                             <%}%>
+                    <li class="cityli"><%=entries[i].city%></li>
+                    
                     </ul>
                     <% if (entries[i].region) { %>
                     </ul>

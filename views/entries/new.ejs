@@ -6,18 +6,20 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- <script defer src="./handleGetData.js"></script> -->
     <title>New Entry</title>
+    <link rel="stylesheet" type="text/css" href="style/entries-new.css">
+
 </head>
 
 <body>
     <header>
-        <h1>Create an Entry</h1>
+        <h1>Add a New Destination</h1>
         <nav>
             <ul>
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/entries">Entries Index</a>
+                    <a href="/entries">Back</a>
                 </li>
             </ul>
         </nav>
@@ -31,7 +33,7 @@
             <!-- Image: <input type="text" name="image"  /> -->
             <label for="images">Select images:</label>
             <input type="file" id="images" name="images" multiple>
-            Add to myPhotos?<input type="checkbox" name="imageYours"  /><br />
+            Add to Photos?<input type="checkbox" name="imageYours"  /><br />
             Visited?<input type="checkbox" name="visited"  /><br />
             <input type="submit" value="Create Entry" />
         </form>

@@ -13,6 +13,7 @@ db.on('connected', () => console.log('mongo connected'));
 db.on('disconnected', () => console.log('mongo disconnected'));
 //Middlewares
 app.use('/uploads', express.static('uploads'))
+app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
@@ -25,6 +26,7 @@ app.use('/photos', photosController)
 // const articlesController = require('./controllers/articles.js');
 // app.use('/articles', articlesController)
 // INDUCES
+
 
 // I 
 app.get('/', (req, res) => {

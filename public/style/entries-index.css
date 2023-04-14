@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <title>Edit Entry</title>
-    <link rel="stylesheet" type="text/css" href="style/entries-edit.css">
-   <style>
-    /* Color palette */
-:root {
+ /* Color palette */
+ :root {
     --primary-color: #E63946;
     --secondary-color: #333;
     --text-color: #ffbf00;
@@ -58,19 +50,16 @@ nav ul {
     padding: 0;
     display: flex;
 }
-
+/* h1, h4, nav li {
+    transition: all 0.3s ease-in-out;
+} */
 nav li {
     margin-right: 20px;
     background-color: var(--text-color);
-    padding:5px;
-    border-radius: 7px;
-    transition: all 0.3s ease-in-out;
 }
 
 nav li:hover {
     background-color: var(--primary-color);
-    padding:5px;
-    border-radius: 7px;
 }
 
 nav a {
@@ -81,7 +70,7 @@ nav a {
 /* Main styles */
 main {
     margin: 20px;
-    max-width: 100vh;
+    max-width: 50vh;
 }
 
 h2 {
@@ -95,7 +84,7 @@ ul {
     padding: 0;
 }
 
-input {
+li {
     margin-bottom: 10px;
     padding: 10px;
    
@@ -131,20 +120,6 @@ li.cityli {
     display: inline;
 }
 
-form {
-    background-color: #333;
-    border-radius: 20px;
-    padding: 5vh;
-}
-
-input {
-    background-color:#ffbf00;
-    color: white;
-}
-.images {
-    display: inline-block;
-}
-
 /* Footer styles */
 footer {
     background-color: var(--secondary-color);
@@ -161,40 +136,3 @@ footer a {
 footer a:hover {
     color: var(--primary-color);
 }
-   </style> 
-</head>
-
-<body>
-    <header>
-        <h1>Edit This Destination</h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/entries">Back</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <h2>Entry Attributes:</h2>
-        <form action="/entries/<%= entry._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-            <input type="text" name="country" value="<%= entry.country %>" /><br />
-            <input type="text" name="city" value="<%= entry.city %>" /><br />
-            <input type="text" name="region" value="<%= entry.region %>" /><br />
-            <label for="images">Select images:</label>
-            <input type="file" id="images" name="images" multiple>
-            <label for="imageYours">Add to Photos?</label>
-            <input type="checkbox" name="imageYours" value="on" <%= entry.imageYours ? 'checked' : '' %> >
-            <br />
-            <label for="visited">Have you visited?:</label>
-            <input type="checkbox" name="visited" value="on" <%= entry.visited ? 'checked' : '' %> >
-            <br />
-            <input type="submit" value="Update Entry" />
-        </form>
-    </main>
-</body>
-
-</html>
