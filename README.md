@@ -25,4 +25,5 @@ Click [here](https://explorer-journal.herokuapp.com/) to try out Explorer.
 - Organized Checklist (by country and region and not just individual entries)
 - Display an image or placeholder next to each entry
 - Improved aesthetics
+- Delete and add individual images
 
